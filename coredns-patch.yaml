@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: coredns
+  namespace: kube-system
+  labels:
+    c3.doks.digitalocean.com/component: coredns
+    c3.doks.digitalocean.com/plane: data
+    doks.digitalocean.com/managed: "true"
+data:
+  Corefile: |
+    .:53 {
+        errors
+        health
+        ready
+        hosts {
+           10.109.2.17 bharatonewaytaxi.com
+           10.109.2.17 admin.bharatonewaytaxi.com
+           10.109.2.17 api.bharatonewaytaxi.com
+           10.109.2.17 www.api.bharatonewaytaxi.com
+           fallthrough
+        }
+        kubernetes cluster.local in-addr.arpa ip6.arpa {
+          pods insecure
+          fallthrough in-addr.arpa ip6.arpa
+        }
+        prometheus :9153
+        forward . /etc/resolv.conf
+        cache 300 {
+          prefetch 10
+        }
+        loop
+        reload
+        loadbalance
+        import custom/*.override
+    }
+    import custom/*.server
