@@ -1,13 +1,27 @@
 {
   "name": "shared-ui",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Shared UI components for ride-sharing web apps",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "dev": "tsc --watch"
   },
-  "keywords": [],
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  },
+  "keywords": [
+    "ui",
+    "components",
+    "react"
+  ],
   "author": "",
-  "license": "ISC",
-  "type": "commonjs"
+  "license": "ISC"
 }
