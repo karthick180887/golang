@@ -1,0 +1,19 @@
+# Ignore nested git repositories (managed independently or as submodules)
+microservices-go-starter-main/
+driver/
+customer/
+bharatonewaytaxi/
+sketchcabs/
+cabigo/
+vendor/
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Tilt
+.tilt_dev/
