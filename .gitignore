@@ -1,4 +1,4 @@
-# Ignore nested git repositories (managed independently or as submodules)
+# Ignore nested git repositories
 microservices-go-starter-main/
 driver/
 customer/
@@ -17,3 +17,10 @@ Thumbs.db
 
 # Tilt
 .tilt_dev/
+
+# Tools (Binaries)
+tools/*.exe
+
+# Shared UI
+shared-ui/node_modules/
+shared-ui/dist/
