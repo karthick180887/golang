@@ -79,11 +79,13 @@ for svc in services:
 
 ### Admin Dashboard ###
 
+admin_api_url = os.getenv('ADMIN_DASHBOARD_API_URL', 'http://localhost:8081')
+
 docker_build(
   'ride-sharing/admin-dashboard',
   './microservices-go-starter-main/admin-dashboard',
   dockerfile='./microservices-go-starter-main/admin-dashboard/Dockerfile',
-  build_args={'NEXT_PUBLIC_API_URL': 'http://localhost:8081'},
+  build_args={'NEXT_PUBLIC_API_URL': admin_api_url},
 )
 
 k8s_yaml('./microservices-go-starter-main/infra/development/k8s/admin-dashboard-deployment.yaml')
@@ -123,3 +125,31 @@ k8s_yaml('./sketchcabs/k8s-deployment.yaml')
 k8s_resource('sketchcabs', port_forwards=3002, labels="frontend")
 
 ### End of Sketch Cabs ###
+
+### Cabigo Website ###
+
+docker_build(
+  'registry.digitalocean.com/cabigo/cabigo-web',
+  './cabigo',
+  dockerfile='./cabigo/Dockerfile',
+  build_args={'NEXT_PUBLIC_GOOGLE_MAPS_API_KEY': 'AIzaSyAYjrbg1hQJYC4vOMvQS7C9lJ3TDWQSuFo'},
+)
+
+k8s_yaml('./cabigo/k8s-deployment.yaml')
+k8s_resource('cabigo-web', port_forwards='3003:3000', labels="frontend")
+
+### End of Cabigo ###
+
+### OneWayTaxi.ai Website ###
+
+docker_build(
+  'registry.digitalocean.com/cabigo/onewaytaxi-web',
+  './onewaytaxi',
+  dockerfile='./onewaytaxi/Dockerfile',
+)
+
+k8s_yaml('./onewaytaxi/k8s-deployment.yaml')
+k8s_resource('onewaytaxi-web', port_forwards='3004:3000', labels="frontend")
+
+### End of OneWayTaxi.ai ###
+

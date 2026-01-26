@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  
+  /* Premium Dark Teal Theme */
+  --primary: #0F3D3E; /* Deep Teal */
+  --primary-foreground: #ffffff;
+  
+  --secondary: #E2DCC8; /* Soft Beige/Gold */
+  --secondary-foreground: #0F3D3E;
+  
+  --accent: #10B981; /* Success Green for actions */
+  --accent-foreground: #ffffff;
+
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #0F3D3E;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    
+    --primary: #E2DCC8; /* Gold becomes primary in dark mode */
+    --primary-foreground: #0F3D3E;
+    
+    --secondary: #0F3D3E;
+    --secondary-foreground: #ffffff;
+    
+    --card: #171717;
+    --card-foreground: #ededed;
+    
+    --border: #262626;
+    --input: #262626;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-outfit), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Glassmorphism Utilities */
+@utility glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+@utility glass-dark {
+  background: rgba(15, 61, 62, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Text Gradient */
+@utility text-gradient {
+  background: linear-gradient(135deg, #0F3D3E 0%, #10B981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
